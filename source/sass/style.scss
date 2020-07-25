@@ -1,0 +1,145 @@
+$margin-auto: 0 auto;
+
+p, h1, h2, h3 {
+  margin-top: 0;
+}
+
+.header,
+.main {
+  margin: $margin-auto;
+  width: 1000px;
+}
+
+.header {
+  margin-bottom: 50px;
+}
+
+.introductory-block {
+
+  &__condition {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__button-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.button {
+  padding: 15px 20px;
+  font-size: 26px;
+  line-height: 38px;
+  background-color: #e9e3e3;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: #f8f8f8;
+    background-color: #bcbcbc;
+  }
+
+  &:active {
+    box-shadow: 0 0 7px 1px inset rgba(0, 0, 0, .8);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.load-icon {
+  position: absolute;
+  display: none;
+  top: 10%;
+  left: 48.6%;
+  width: 50px;
+  height: 50px;
+
+  &--visible {
+    display: block;
+    animation: pulse .5s ease infinite alternate;
+  }
+}
+
+.error-block {
+  margin: $margin-auto;
+  width: 70%;
+  text-align: center;
+}
+
+.info-table {
+  margin: $margin-auto;
+  margin-bottom: 40px;
+  text-align: center;
+  border: 3px dashed black;
+  border-spacing: 10px;
+  border-collapse: collapse;
+
+  & tr {
+    border-bottom: 1px solid black;
+  }
+
+  &__user {
+    cursor: pointer;
+
+    &:hover {
+      opacity: .5;
+    }
+  }
+
+  & th {
+    padding: 20px 15px;
+    font-size: 34px;
+    line-height: 38px;
+  }
+
+  & th,
+  & td {
+    border-right: 1px solid black;
+  }
+
+  & td {
+    padding: 20px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
+
+.user-information {
+  margin: $margin-auto;
+  padding: 0 20px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &__info-list {
+    margin: 0;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+  &__user-description {
+    width: 100%;
+    resize: none;
+  }
+}
+
+@keyframes pulse {
+  from {
+    width: 50px;
+    height: 50px;
+  }
+  to {
+    width: 60px;
+    height: 60px;
+  }
+}
