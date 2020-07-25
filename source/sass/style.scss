@@ -1,4 +1,5 @@
 $margin-auto: 0 auto;
+$black-color: black;
 
 p, h1, h2, h3 {
   margin-top: 0;
@@ -81,32 +82,56 @@ p, h1, h2, h3 {
   border-collapse: collapse;
 
   & tr {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $black-color;
+  }
+
+  &__column-type {
+    position: relative;
+    padding: 20px 30px 20px 15px;
+    font-size: 34px;
+    line-height: 38px;
+    cursor: pointer;
+    border-right: 1px solid $black-color;
+    transition: opacity, .3s ease-out;
+
+    &:hover,
+    &:focus {
+      opacity: .5;
+    }
+
+    &:active {
+      opacity: .3;
+    }
+
+    &--sort-up svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__sort-direction {
+    position: absolute;
+    top: 40%;
+    right: 1%;
   }
 
   &__user {
     cursor: pointer;
 
-    &:hover {
-      opacity: .5;
+    &:hover,
+    &:focus {
+      opacity: .6;
     }
-  }
 
-  & th {
-    padding: 20px 15px;
-    font-size: 34px;
-    line-height: 38px;
-  }
-
-  & th,
-  & td {
-    border-right: 1px solid black;
+    &:active {
+      opacity: .3;
+    }
   }
 
   & td {
     padding: 20px;
     font-size: 24px;
     line-height: 28px;
+    border-right: 1px solid $black-color;
   }
 }
 

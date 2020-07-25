@@ -31,7 +31,7 @@ export default class UserInformation extends Component {
     return (
       <section className="user-information">
         <h3 className="user-information__selected-user">{`Выбранный пользователь: ${userInformation.firstName} ${userInformation.lastName}`}</h3>
-        <textarea className="user-information__user-description" name="user-description" id="user-description" defaultValue={userInformation.description} rows="5" readOnly />
+        <textarea className="user-information__user-description" name="user-description" id="user-description" value={userInformation.description} rows="5" readOnly />
         <ul className="user-information__info-list">
           <li className="user-information__info-item">
             <p className="user-information__info">Адрес проживания: <b>{streetAddress}</b></p>

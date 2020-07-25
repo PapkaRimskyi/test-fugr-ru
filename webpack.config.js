@@ -53,6 +53,46 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpe?g|svg|gif|ico)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: `${PATHS.assets}img`,
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true,
+              optipng: {
+                enabled: true,
+              },
+              pngquant: {
+                strip: true,
+                quality: [0.65, 0.90],
+                speed: 5,
+              },
+              mozjpeg: {
+                quality: 70,
+                progressive: true,
+              },
+              svgo: {
+                plugins: [
+                  {
+                    removeViewBox: false,
+                  },
+                ],
+              },
+              webp: {
+                quality: 70,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

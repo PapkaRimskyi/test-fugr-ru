@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
@@ -12,7 +13,7 @@ export default class MainSite extends Component {
     this.smallDataLink = 'http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
     this.bigDataLink = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
     this.state = {
-      sortType: 'id', data: null, errorInfo: { status: false, text: '' }, userInformation: null,
+      sortDirection: false, sortTypeButton: null, data: null, errorInfo: { status: false, text: '' }, userInformation: null,
     };
 
     this.loadIcon = document.querySelector('.load-icon');
@@ -20,8 +21,10 @@ export default class MainSite extends Component {
     this.getDataFromServer = this.getDataFromServer.bind(this);
     this.loadingIcon = this.loadingIcon.bind(this);
     this.fetchData = this.fetchData.bind(this);
-
-    this.tableHandler = this.tableHandler.bind(this);
+    this.typeSortHandler = this.typeSortHandler.bind(this);
+    this.userCellDelegationHandler = this.userCellDelegationHandler.bind(this);
+    this.sortData = this.sortData.bind(this);
+    this.checkSortDirection = this.checkSortDirection.bind(this);
   }
 
   componentDidMount() {
@@ -68,18 +71,56 @@ export default class MainSite extends Component {
     }
   }
 
-  tableHandler(e) {
+  userCellDelegationHandler(e) {
     if (e.target.closest('.info-table__user')) {
       const { data } = this.state;
       this.setState({ userInformation: data.find((user) => (user.email === e.target.closest('.info-table__user').querySelector('.info-table__user-email').textContent ? user : '')) });
     }
   }
 
+  checkSortDirection(target) {
+    if (!target.classList.contains('info-table__column-type--sort-up')) {
+      return true;
+    }
+    return false;
+  }
+
+  typeSortHandler(e) {
+    const sortDirection = this.checkSortDirection(e.target);
+    this.setState({ data: this.sortData(e.target.textContent, sortDirection), sortDirection, sortTypeButton: e.target.textContent });
+  }
+
+  sortData(sortType, sortDirection) {
+    const { data } = this.state;
+    if (sortDirection) {
+      switch (sortType) {
+        case 'id':
+          return data.sort((a, b) => a.id - b.id);
+        case 'firstName':
+        case 'lastName':
+        case 'email':
+          return data.sort((a, b) => {
+            if (a[sortType] > b[sortType]) {
+              return 1;
+            } if (a[sortType] < b[sortType]) {
+              return -1;
+            }
+            return 0;
+          });
+        case 'phone':
+          return data.sort((a, b) => a.phone.replace(/[^\d]/g, '') - b.phone.replace(/[^\d]/g, ''));
+        default:
+          return data;
+      }
+    }
+    return data.reverse();
+  }
+
   render() {
-    const { data, errorInfo, userInformation } = this.state;
+    const { data, errorInfo, userInformation, sortDirection, sortTypeButton } = this.state;
     return (
       <main className="main">
-        {!errorInfo.status && data ? <InfoTable tableHandler={this.tableHandler} receivedData={data} /> : <ErrorBlock error={errorInfo.text} />}
+        {!errorInfo.status && data ? <InfoTable userCellDelegationHandler={this.userCellDelegationHandler} typeSortHandler={this.typeSortHandler} receivedData={data} sortInfo={[sortDirection, sortTypeButton]} /> : <ErrorBlock error={errorInfo.text} />}
         {userInformation && <UserInformation userInformation={userInformation} />}
       </main>
     );
