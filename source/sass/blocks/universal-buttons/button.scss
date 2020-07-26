@@ -7,6 +7,10 @@
   cursor: pointer;
   transition: all .2s ease-in-out;
 
+  &:first-letter {
+    text-transform: capitalize;
+  }
+
   &:hover,
   &:focus {
     color: #f8f8f8;

@@ -12,31 +12,37 @@
 
   &__column-type {
     position: relative;
-    padding: 20px 30px 20px 15px;
     font-size: 34px;
     line-height: 38px;
-    cursor: pointer;
     border-right: 1px solid $black-color;
-    transition: opacity, .3s ease-out;
+  }
+
+  &__sort-button {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+
+    &--sort-up::before,
+    &--sort-down::before {
+      position: absolute;
+      content: "";
+      top: 40%;
+      right: 0%;
+      width: 20px;
+      height: 20px;
+      background-image: url("../img/arrow.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    &--sort-up::before {
+      transform: rotate(180deg);
+    }
 
     &:hover,
     &:focus {
-      opacity: .5;
+      background-color: rgb(99, 97, 97);
     }
-
-    &:active {
-      opacity: .3;
-    }
-
-    &--sort-up svg {
-      transform: rotate(180deg);
-    }
-  }
-
-  &__sort-direction {
-    position: absolute;
-    top: 40%;
-    right: 1%;
   }
 
   &__user {

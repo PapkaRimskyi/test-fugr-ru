@@ -24,6 +24,7 @@ export default class MainSite extends Component {
     this.typeSortHandler = this.typeSortHandler.bind(this);
     this.getMoreUserInformationHandler = this.getMoreUserInformationHandler.bind(this);
     this.addUserInformation = this.addUserInformation.bind(this);
+    this.getMoreUserInformationEnterHandler = this.getMoreUserInformationEnterHandler.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,12 @@ export default class MainSite extends Component {
     }
   }
 
+  getMoreUserInformationEnterHandler(e) {
+    if (e.key === 'Enter') {
+      this.getMoreUserInformationHandler(e);
+    }
+  }
+
   loadingIcon() {
     const { setloadDataButtonStatus } = this.props;
     if (this.loadIcon.classList.contains('load-icon--visible')) {
@@ -60,7 +67,7 @@ export default class MainSite extends Component {
   }
 
   checkSortDirection(target) {
-    if (!target.classList.contains('info-table__column-type--sort-up')) {
+    if (!target.classList.contains('info-table__sort-button--sort-up')) {
       return true;
     }
     return false;
@@ -68,8 +75,10 @@ export default class MainSite extends Component {
 
   typeSortHandler(e) {
     const { data } = this.state;
-    const sortDirection = this.checkSortDirection(e.target);
-    this.setState({ data: sortData(data, e.target.textContent, sortDirection), sortDirection, sortTypeButton: e.target.textContent });
+    if (e.target.tagName === 'BUTTON') {
+      const sortDirection = this.checkSortDirection(e.target);
+      this.setState({ data: sortData(data, e.target.textContent, sortDirection), sortDirection, sortTypeButton: e.target.textContent });
+    }
   }
 
   addUserInformation(userInfo) {
@@ -77,10 +86,12 @@ export default class MainSite extends Component {
   }
 
   render() {
-    const { data, errorInfo, userInformation, sortDirection, sortTypeButton } = this.state;
+    const {
+      data, errorInfo, userInformation, sortDirection, sortTypeButton,
+    } = this.state;
     return (
       <main className="main">
-        {!errorInfo.status && data ? <InfoTable getMoreUserInformationHandler={this.getMoreUserInformationHandler} addUserInformation={this.addUserInformation} typeSortHandler={this.typeSortHandler} receivedData={data} sortInfo={[sortDirection, sortTypeButton]} /> : <RequestErrorBlock error={errorInfo.text} />}
+        {!errorInfo.status && data ? <InfoTable handlers={[this.getMoreUserInformationEnterHandler, this.getMoreUserInformationHandler, this.typeSortHandler]} addUserInformation={this.addUserInformation} receivedData={data} sortInfo={[sortDirection, sortTypeButton]} /> : <RequestErrorBlock error={errorInfo.text} />}
         {userInformation && <UserInformation userInformation={userInformation} />}
       </main>
     );

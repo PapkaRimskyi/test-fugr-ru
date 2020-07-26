@@ -1,26 +1,22 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable no-useless-constructor */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+
+import scrollTo from '../../../utils/scrollTo';
 
 export default class UserInformation extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { currentUser: null };
   }
 
   componentDidMount() {
-    this.scrollTo(document.querySelector('.user-information'));
+    scrollTo(document.querySelector('.user-information'));
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.userInformation !== this.props.userInformation) {
-      this.scrollTo(document.querySelector('.user-information'));
+      scrollTo(document.querySelector('.user-information'));
     }
-  }
-
-  scrollTo(place) {
-    place.scrollIntoView();
   }
 
   render() {
@@ -46,7 +42,7 @@ export default class UserInformation extends Component {
             <p className="user-information__info">Индекс: <b>{zip}</b></p>
           </li>
         </ul>
-        <button className="button" type="button" onClick={this.scrollTo.bind(this, document.body)} aria-label="К началу страницы">В начало страницы</button>
+        <button className="button" type="button" onClick={scrollTo.bind(this, document.body)} aria-label="К началу страницы">В начало страницы</button>
       </section>
     );
   }

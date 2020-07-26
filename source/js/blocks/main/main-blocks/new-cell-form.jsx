@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable class-methods-use-this */
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 
@@ -9,7 +8,6 @@ export default class NewCellForm extends Component {
   constructor(props) {
     super(props);
 
-    this.inputNames = ['id', 'firstName', 'lastName', 'email', 'phone'];
     this.state = { formStatus: false };
 
     this.switchFormHandler = this.switchFormHandler.bind(this);
@@ -17,11 +15,12 @@ export default class NewCellForm extends Component {
   }
 
   cellForm() {
+    const { sortTypes: inputNames } = this.props;
     return (
       <form method="post" className="add-cell__form" onSubmit={this.sendFormHandler}>
         <fieldset className="add-cell__fieldset">
           <ul className="add-cell__input-list">
-            {this.inputNames.map((input) => (
+            {inputNames.map((input) => (
               <li key={`input-${input}`} className="add-cell__item">
                 <input className="add-cell__input" name={input} type={input === 'id' ? 'number' : input === 'email' ? 'email' : input === 'phone' ? 'tel' : 'text'} min={input === 'id' ? '0' : null} pattern={input === 'firstName' || input === 'lastName' ? '^[a-zA-Z]+$' : input === 'phone' ? '[0-9]{3}[0-9]{3}[0-9]{4}' : null} placeholder={input} required />
               </li>
