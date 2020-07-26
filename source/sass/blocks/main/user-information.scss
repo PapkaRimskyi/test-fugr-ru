@@ -1,0 +1,22 @@
+.user-information {
+  margin: $margin-auto;
+  padding: 0 20px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &__info-list {
+    margin: 0;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+  &__user-description {
+    width: 100%;
+    resize: none;
+  }
+}

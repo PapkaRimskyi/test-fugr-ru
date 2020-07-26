@@ -1,0 +1,23 @@
+.button {
+  padding: 15px 20px;
+  font-size: 26px;
+  line-height: 38px;
+  background-color: #e9e3e3;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: #f8f8f8;
+    background-color: #bcbcbc;
+  }
+
+  &:active {
+    box-shadow: 0 0 7px 1px inset rgba(0, 0, 0, .8);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

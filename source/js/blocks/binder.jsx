@@ -2,10 +2,10 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 
-import Header from './header-blocks/header-site';
-import MainSite from './main-blocks/main-site';
+import Header from './header/header-site';
+import MainSite from './main/main-site';
 
-export default class Main extends Component {
+export default class Binder extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,7 @@ export default class Main extends Component {
     this.buttonLoadDataHandler = this.buttonLoadDataHandler.bind(this);
   }
 
-  setDataButtonStatus(loadIcon) {
+  setloadDataButtonStatus(loadIcon) {
     const buttonsLoader = Array.from(document.querySelectorAll('.button-load-data'));
     if (loadIcon.classList.contains('load-icon--visible')) {
       buttonsLoader.forEach((button) => button.setAttribute('disabled', 'true'));
@@ -33,7 +33,7 @@ export default class Main extends Component {
     return (
       <>
         <Header buttonHandler={this.buttonLoadDataHandler} />
-        {pressedButton && <MainSite dataButtonStatus={this.setDataButtonStatus} pressedButton={pressedButton} />}
+        {pressedButton && <MainSite setloadDataButtonStatus={this.setloadDataButtonStatus} pressedButton={pressedButton} />}
       </>
     );
   }

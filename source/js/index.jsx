@@ -3,12 +3,6 @@ import ReactDOM from 'react-dom';
 
 import '../sass/style.scss';
 
-import Main from './blocks/main';
+import Binder from './blocks/binder';
 
-function Index() {
-  return (
-    <Main />
-  );
-}
-
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(<Binder />, document.getElementById('root'));
