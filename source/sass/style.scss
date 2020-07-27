@@ -24,10 +24,11 @@ fieldset {
 @import "./blocks/universal-buttons/button.scss";
 @import "./blocks/header/introductory-block.scss";
 @import "./blocks/universal-buttons/load-icon.scss";
-@import "./blocks/universla-blocks/error-block.scss";
+@import "./blocks/universal-blocks/error-block.scss";
 @import "./blocks/main/add-cell.scss";
 @import "./blocks/main/info-table.scss";
 @import "./blocks/main/user-information.scss";
+@import "./blocks/universal-blocks/pagination.scss";
 
 .header,
 .main {

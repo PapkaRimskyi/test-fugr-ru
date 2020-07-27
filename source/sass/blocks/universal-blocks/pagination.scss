@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__button {
+    padding: 20px;
+    background-image: url("../img/arrow.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    &--prev {
+      transform: rotate(90deg);
+    }
+
+    &--next {
+      transform: rotate(-90deg);
+    }
+
+    &:hover,
+    &:focus {
+      opacity: .6;
+    }
+
+    &:active {
+      opacity: .3;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: .4;
+    }
+  }
+
+  &__page-info {
+    margin: 0 20px;
+  }
+}

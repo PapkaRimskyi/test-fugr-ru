@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
-import scrollTo from '../../../utils/scrollTo';
+import scrollTo from '../../../utils/scroll-to';
 
 export default class UserInformation extends Component {
   constructor(props) {
