@@ -11,6 +11,7 @@ function setPhonePattern(number) {
 
 export default function userInformationFormatting(userInformation) {
   const userInfo = userInformation;
+  userInfo.id = Number(userInfo.id);
   userInfo.firstName = setCapitalLetter(userInfo.firstName);
   userInfo.lastName = setCapitalLetter(userInfo.lastName);
   userInfo.phone = setPhonePattern(userInfo.phone);

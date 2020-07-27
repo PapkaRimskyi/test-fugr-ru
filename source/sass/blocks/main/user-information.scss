@@ -6,6 +6,16 @@
   justify-content: center;
   flex-wrap: wrap;
 
+  &__selected-user {
+    text-align: center;
+  }
+
+  &__none-detailed-info {
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+  }
+
   &__info-list {
     margin: 0;
     padding: 0 40px;
